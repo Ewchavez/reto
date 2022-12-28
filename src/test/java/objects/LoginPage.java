@@ -30,6 +30,7 @@ public class LoginPage extends HelperWeb {
 
     public void desplegarLista(String key) {
         driver.findElement(By.xpath(HomePath.listAPI.replace("key",key))).click();
+        hooks.takeScreen();
     }
 
     public void probarAPI() {

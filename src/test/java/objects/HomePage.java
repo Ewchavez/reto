@@ -65,8 +65,12 @@ public class HomePage extends HelperWeb {
         for (WebElement e: driver.findElements(By.cssSelector(HomePath.selectValues)) ){
             if (e.getText().contains(status)){
                 e.click();
+                break;
             }
         }
+        ScrollElement(By.cssSelector(HomePath.selectValues)) ;
+        hooks.takeScreen();
+
     }
 
     public void executeAPI() {
@@ -85,11 +89,16 @@ public class HomePage extends HelperWeb {
     }
 
     public void actualizarRequestBody( String body) {
+        ScrollElement(By.cssSelector(HomePath.textAreaRequest));
         driver.findElement(By.cssSelector(HomePath.textAreaRequest)).clear();
         driver.findElement(By.cssSelector(HomePath.textAreaRequest)).sendKeys(body);
+        hooks.takeScreen();
+
     }
 
     public void writePetID(String petID) {
+        ScrollElement(By.cssSelector(HomePath.inputPetID));
         driver.findElement(By.cssSelector(HomePath.inputPetID)).sendKeys(petID);
+        hooks.takeScreen();
     }
 }
