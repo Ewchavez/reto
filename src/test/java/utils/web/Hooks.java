@@ -24,7 +24,7 @@ public class Hooks extends utils.SessionManager {
 
    }
 
-    public void takeScrenn() {
+    public void takeScreen() {
         SessionManager.scenario=SessionManager.obternerSesion("scenario");
         try {
             byte[] screenshot = (byte[])((TakesScreenshot)this.driver).getScreenshotAs(OutputType.BYTES);

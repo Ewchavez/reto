@@ -1,6 +1,9 @@
 package objects;
 
+import models.PetStore;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import userinterfaces.HomePath;
 import utils.web.HelperWeb;
 import utils.web.Hooks;
@@ -18,7 +21,7 @@ public class HomePage extends HelperWeb {
         isPageRenderedProperly();
         waitElementAppear(By.cssSelector(HomePath.btnAuthorize),3);
         driver.findElement(By.cssSelector(HomePath.btnAuthorize)).click();
-        hooks.takeScrenn();
+        hooks.takeScreen();
 
     }
 
@@ -26,23 +29,67 @@ public class HomePage extends HelperWeb {
     public void ingresarAPIkey(String arg0) {
         waitElementAppear(By.cssSelector(HomePath.inputValueKey),3);
         driver.findElement(By.cssSelector(HomePath.inputValueKey)).sendKeys(arg0);
-        hooks.takeScrenn();
+        hooks.takeScreen();
     }
 
-    public void autorizarKey() {
-        waitElementAppear(By.cssSelector(HomePath.btnSubmitAutorize),3);
-        driver.findElement(By.cssSelector(HomePath.btnSubmitAutorize)).click();
+    public void autorizarButton(int locate) {
+        waitElementAppear(By.xpath(HomePath.btnSubmitAutorize),3);
+        driver.findElements(By.xpath(HomePath.btnSubmitAutorize)).get(locate).click();
     }
 
     public boolean obtenerRespuesta() {
         waitElementAppear(By.cssSelector(HomePath.labelResult),3);
         String response= driver.findElement(By.cssSelector(HomePath.labelResult)).getText();
-        hooks.takeScrenn();
+        hooks.takeScreen();
         if (response.equals("Authorized")){
             return true;
         }
         return false;
     }
+    public void closeModal(){
+        driver.findElement(By.xpath(HomePath.btnClose)).click();
+    }
 
 
+
+    public boolean validoElCodigoEspera(String arg0) {
+
+        hooks.takeScreen();
+        if (PetStore.ResponseCode.contains(arg0)){
+            return true;
+        }
+        return false;
+    }
+    public void setStatus(String status) {
+        driver.findElement(By.cssSelector(HomePath.selectStatus)).click();
+        for (WebElement e: driver.findElements(By.cssSelector(HomePath.selectValues)) ){
+            if (e.getText().contains(status)){
+                e.click();
+            }
+        }
+    }
+
+    public void executeAPI() {
+        driver.findElement(By.xpath(HomePath.btnEjecutarAPI)).click();
+    }
+
+    public void getResponse() {
+        waitElementAppear(By.cssSelector(HomePath.responseCode),5);
+        ScrollElement(By.cssSelector(HomePath.responseCode));
+        PetStore.ResponseCode=driver.findElement(By.cssSelector(HomePath.responseCode)).getText();
+        PetStore.responseDescription=driver.findElement(By.cssSelector(HomePath.responseDescription)).getText();
+    }
+
+    public String getBody() {
+        return driver.findElement(By.cssSelector(HomePath.textAreaRequest)).getText();
+    }
+
+    public void actualizarRequestBody( String body) {
+        driver.findElement(By.cssSelector(HomePath.textAreaRequest)).clear();
+        driver.findElement(By.cssSelector(HomePath.textAreaRequest)).sendKeys(body);
+    }
+
+    public void writePetID(String petID) {
+        driver.findElement(By.cssSelector(HomePath.inputPetID)).sendKeys(petID);
+    }
 }

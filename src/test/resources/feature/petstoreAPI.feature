@@ -59,7 +59,7 @@ Característica: Consulta Petstore APIS
     Entonces valido el codigo espera "200"
     Y consulto la mascota previamente consultada
     Entonces valido el codigo espera "200"
-    Cuando cargo la pagina DemoBlaze en "Chrome"
+    Cuando cargo la pagina petstore3 en "Chrome"
     Y ingreso a la opcion "Authorize"
     Y autorizo el valor api_key "<apikey>"
     E elimino la mascota previamente consultada con la autorizacion "<apikey>"
