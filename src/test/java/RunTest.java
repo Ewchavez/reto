@@ -5,10 +5,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/feature/petstoreWeb"},
+        features = {"src/test/resources/feature/petstoreWeb.feature"},
         junit={"--step-notifications"},
         glue = {"definitions"},
-        tags = {"@ActualizarPet"},
+        tags = {},
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json" }

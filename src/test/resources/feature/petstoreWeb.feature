@@ -43,7 +43,7 @@ Característica: Consulta Petstore Web
 
 
   @EliminarPet
-  Esquema del escenario: Actualizar Mascotas <ID_Caso>
+  Esquema del escenario: Eliminar Mascotas <ID_Caso>
     Dado que despliego la opcion "eliminar mascota"
     Y elimino la mascota con numero id "<numero>"
     Cuando ejecuto la operacion

@@ -9,7 +9,8 @@ public abstract class HelperWeb {
     public static WebDriver driver;
     Hooks Hoocks=new Hooks();
 
-    public void ScrollElement(By element){
+    public void ScrollElement(By elements){
+        WebElement element = driver.findElement(elements);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
     public void HelperWeb(){
